@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Kitty Prince - Rescue Mission</title>
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-quicksand@5.0.0/index.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #ff69b4;
+            --light-pink: #ffb6c1;
+            --dark-pink: #c71585;
+            --white: #ffffff;
+            --purple: #9370db;
+            --gold: #ffd700;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #ffb6c1 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Custom Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 105, 180, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--dark-pink);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--purple);
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            width: 300px;
+            height: 300px;
+            margin: 2rem auto;
+            border-radius: 50%;
+            border: 8px solid var(--white);
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4);
+            animation: float 3s ease-in-out infinite;
+            object-fit: cover;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Price Section */
+        .price-section {
+            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-section::before {
+            content: '✨';
+            position: absolute;
+            font-size: 3rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .price-card {
+            background: var(--white);
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 1;
+        }
+
+        .price-tag {
+            font-size: 4rem;
+            color: var(--dark-pink);
+            font-weight: bold;
+        }
+
+        .price-tag span {
+            font-size: 1.5rem;
+            color: var(--purple);
+        }
+
+        .price-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .price-features li {
+            padding: 0.5rem 0;
+            color: var(--purple);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features li::before {
+            content: '🎮';
+        }
+
+        /* Missions Section */
+        .missions {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--dark-pink);
+            margin-bottom: 3rem;
+        }
+
+        .missions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .mission-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.4);
+        }
+
+        .mission-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .mission-content {
+            padding: 1.5rem;
+        }
+
+        .mission-number {
+            background: var(--primary-pink);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .mission-title {
+            font-size: 1.3rem;
+            color: var(--dark-pink);
+            margin-bottom: 0.5rem;
+        }
+
+        .mission-description {
+            color: var(--purple);
+            line-height: 1.6;
+        }
+
+        /* Interactive Game Section */
+        .game-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+        }
+
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+        }
+
+        .game-canvas {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(180deg, #87ceeb 0%, #98fb98 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .player {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            font-size: 3rem;
+            transition: all 0.1s ease;
+        }
+
+        .obstacle {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .game-btn {
+            padding: 1rem 2rem;
+            background: var(--primary-pink);
+            color: var(--white);
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .game-btn:hover {
+            background: var(--dark-pink);
+            transform: scale(1.05);
+        }
+
+        .game-score {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--dark-pink);
+            margin-bottom: 1rem;
+        }
+
+        /* Characters Section */
+        .characters {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .character-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+        }
+
+        .character-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 5px solid var(--light-pink);
+        }
+
+        .character-name {
+            font-size: 1.5rem;
+            color: var(--dark-pink);
+            margin-bottom: 0.5rem;
+        }
+
+        .character-role {
+            color: var(--purple);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-pink), var(--purple));
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-link:hover {
+            background: var(--white);
+            color: var(--dark-pink);
+            transform: translateY(-5px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 30px;
+            max-width: 500px;
+            text-align: center;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--dark-pink);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-pink);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0.5rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .hero-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .price-tag {
+                font-size: 3rem;
+            }
+        }
+
+        /* Floating Hearts Animation */
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: floatHeart 4s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">🎀</div>
+                <span>Hello Kitty Prince</span>
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#misiones">Misiones</a></li>
+                <li><a href="#personajes">Personajes</a></li>
+                <li><a href="#juego">Jugar</a></li>
+                <li><a href="#precio">Precio</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>👑 Hello Kitty Prince 👑</h1>
+            <p>¡Una aventura mágica para rescatar a la Princesa!</p>
+            <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/126f079ad-f276-4c57-9e2f-d25b60092281.png" alt="Princess Hello Kitty" class="hero-image">
+            <p>¿Estás listo para la aventura?</p>
+            <button class="cta-button" onclick="scrollToGame()">¡JUGAR AHORA!</button>
+        </div>
+    </section>
+
+    <!-- Missions Section -->
+    <section class="missions" id="misiones">
+        <h2 class="section-title">🗺️ Las 5 Misiones</h2>
+        <div class="missions-grid">
+            <div class="mission-card" onclick="showMissionModal(1)">
+                <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/108f1c70d-53a5-4c25-b04f-f781176cc25f.png" alt="Castle" class="mission-image">
+                <div class="mission-content">
+                    <div class="mission-number">1</div>
+                    <h3 class="mission-title">El Secuestro del Castillo</h3>
+                    <p class="mission-description">El juego comienza en el pacífico reino de Alicante. El villano aparece y secuestra a la princesa. ¡El príncipe debe escapar para comenzar el rescate!</p>
+                </div>
+            </div>
+            <div class="mission-card" onclick="showMissionModal(2)">
+                <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/1e27dfae7-dece-4760-93e5-515fd12c00d8.png" alt="Forest" class="mission-image">
+                <div class="mission-content">
+                    <div class="mission-number">2</div>
+                    <h3 class="mission-title">El Bosque Encantado</h3>
+                    <p class="mission-description">El príncipe viaja por un bosque mágico lleno de enemigos y trampas. Debe saltar obstáculos, derrotar enemigos y encontrar una llave.</p>
+                </div>
+            </div>
+            <div class="mission-card" onclick="showMissionModal(3)">
+                <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/108f1c70d-53a5-4c25-b04f-f781176cc25f.png" alt="Bridge" class="mission-image">
+                <div class="mission-content">
+                    <div class="mission-number">3</div>
+                    <h3 class="mission-title">El Puente Peligroso</h3>
+                    <p class="mission-description">Un largo puente sobre un cañón profundo. Salta entre plataformas móviles y evita trampas. Los power-ups ayudarán al príncipe.</p>
+                </div>
+            </div>
+            <div class="mission-card" onclick="showMissionModal(4)">
+                <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/14102d244-9069-4c9d-a57d-d94d45729646.png" alt="Dark Castle" class="mission-image">
+                <div class="mission-content">
+                    <div class="mission-number">4</div>
+                    <h3 class="mission-title">El Castillo Oscuro</h3>
+                    <p class="mission-description">El príncipe entra al castillo del villano. Pasillos oscuros, guardias y puzzles. Encuentra la torre donde está encerrada la princesa.</p>
+                </div>
+            </div>
+            <div class="mission-card" onclick="showMissionModal(5)">
+                <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/11a1d1cb6-6ab3-4413-a200-7f192feaba87.png" alt="Villain" class="mission-image">
+                <div class="mission-content">
+                    <div class="mission-number">5</div>
+                    <h3 class="mission-title">Batalla Final y Rescate</h3>
+                    <p class="mission-description">¡Batalla intensa contra el villano! Esquiva ataques y usa todas tus habilidades. Derrota al villano y rescata a la Princesa Hello Kitty.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Characters Section -->
+    <section class="characters" id="personajes">
+        <h2 class="section-title">🎭 Personajes</h2>
+        <div class="characters-grid">
+            <div class="character-card">
+                <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/126f079ad-f276-4c57-9e2f-d25b60092281.png" alt="Princess Hello Kitty" class="character-image">
+                <h3 class="character-name">Princesa Hello Kitty</h3>
+                <p class="character-role">👸 La Princesa a Rescatar</p>
+            </div>
+            <div class="character-card">
+                <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/11a1d1cb6-6ab3-4413-a200-7f192feaba87.png" alt="Villain Prince" class="character-image">
+                <h3 class="character-name">Príncipe Villano</h3>
+                <p class="character-role">😈 El Antagonista</p>
+            </div>
+            <div class="character-card">
+                <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/108f1c70d-53a5-4c25-b04f-f781176cc25f.png" alt="Hero Prince" class="character-image">
+                <h3 class="character-name">Príncipe Héroe</h3>
+                <p class="character-role">🦸 El Jugador</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Section -->
+    <section class="game-section" id="juego">
+        <h2 class="section-title">🎮 Mini Juego Interactivo</h2>
+        <div class="game-container">
+            <div class="game-score">
+                Puntuación: <span id="score">0</span> | Vidas: <span id="lives">❤️❤️❤️</span>
+            </div>
+            <div class="game-canvas" id="gameCanvas">
+                <div class="player" id="player">👸</div>
+            </div>
+            <div class="game-controls">
+                <button class="game-btn" onclick="jump()">⬆️ Saltar</button>
+                <button class="game-btn" onclick="startGame()">▶️ Iniciar</button>
+                <button class="game-btn" onclick="resetGame()">🔄 Reiniciar</button>
+            </div>
+            <p style="text-align: center; margin-top: 1rem; color: var(--purple);">
+                💡 Consejo: Presiona ESPACIO o toca Saltar para evitar los obstáculos
+            </p>
+        </div>
+    </section>
+
+    <!-- Price Section -->
+    <section class="price-section" id="precio">
+        <div class="price-card">
+            <h3 style="color: var(--dark-pink); font-size: 1.8rem; margin-bottom: 1rem;">🎁 Edición Especial</h3>
+            <div class="price-tag">$29.99 <span>USD</span></div>
+            <ul class="price-features">
+                <li>5 Misiones Épicas</li>
+                <li>Personajes Exclusivos Hello Kitty</li>
+                <li>Modo Historia Completo</li>
+                <li>Skins y Power-ups</li>
+                <li>Soporte Multiplataforma</li>
+                <li>Actualizaciones Gratuitas</li>
+            </ul>
+            <button class="cta-button" onclick="showPurchaseModal()">🛒 COMPRAR AHORA</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>🎀 Hello Kitty Prince 🎀</h3>
+            <p>¡Gracias por jugar!</p>
+            <div class="social-links">
+                <div class="social-link">📱</div>
+                <div class="social-link">📷</div>
+                <div class="social-link">🐦</div>
+                <div class="social-link">📺</div>
+            </div>
+            <p>&copy; 2024 Hello Kitty Prince Game. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Mission Modal -->
+    <div class="modal" id="missionModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('missionModal')">&times;</button>
+            <h2 id="modalTitle" style="color: var(--dark-pink); margin-bottom: 1rem;"></h2>
+            <p id="modalDescription" style="color: var(--purple); line-height: 1.8;"></p>
+            <button class="cta-button" style="margin-top: 2rem;" onclick="closeModal('missionModal')">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Purchase Modal -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('purchaseModal')">&times;</button>
+            <h2 style="color: var(--dark-pink); margin-bottom: 1rem;">🛒 ¡Gracias por tu interés!</h2>
+            <p style="color: var(--purple); margin-bottom: 1rem;">El juego estará disponible pronto en:</p>
+            <ul style="list-style: none; color: var(--purple); margin-bottom: 2rem;">
+                <li>🎮 Steam</li>
+                <li>📱 App Store</li>
+                <li>🤖 Google Play</li>
+                <li>🎯 Nintendo Switch</li>
+            </ul>
+            <p style="color: var(--dark-pink); font-weight: bold;">Precio de Lanzamiento: $29.99 USD</p>
+            <button class="cta-button" style="margin-top: 2rem;" onclick="closeModal('purchaseModal')">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Scroll to Game
+        function scrollToGame() {
+            document.getElementById('juego').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Modal Functions
+        function showMissionModal(missionNumber) {
+            const missions = {
+                1: {
+                    title: '🏰 Misión 1: El Secuestro del Castillo',
+                    description: 'El juego comienza en el pacífico reino de Alicante donde vive la Princesa Hello Kitty. El jugador explora el castillo y aprende los controles básicos. De repente, el villano aparece y secuestra a la princesa. La misión termina cuando el príncipe escapa del castillo para comenzar el rescate.'
+                },
+                2: {
+                    title: '🌲 Misión 2: El Bosque Encantado',
+                    description: 'El jugador controla al príncipe mientras viaja por un bosque mágico. El bosque está lleno de enemigos y trampas. El jugador debe saltar sobre obstáculos, derrotar enemigos y encontrar una llave para continuar el viaje.'
+                },
+                3: {
+                    title: '🌉 Misión 3: El Puente Peligroso',
+                    description: 'El príncipe llega a un largo puente sobre un cañón profundo. El jugador debe saltar entre plataformas móviles y evitar trampas. Los power-ups ayudan al príncipe a sobrevivir y llegar al otro lado de forma segura.'
+                },
+                4: {
+                    title: '🏯 Misión 4: El Castillo Oscuro',
+                    description: 'El príncipe entra al castillo del villano. En el interior, hay pasillos oscuros, guardias y puzzles. El jugador debe explorar cuidadosamente, evitar trampas y encontrar la torre donde la Princesa Hello Kitty está encerrada.'
+                },
+                5: {
+                    title: '⚔️ Misión 5: Batalla Final y Rescate',
+                    description: 'En la misión final, el príncipe se enfrenta al villano en una batalla intensa. El jugador debe esquivar ataques y usar todas las habilidades aprendidas. Después de derrotar al villano, el príncipe rescata a la Princesa Hello Kitty y la paz regresa al reino.'
+                }
+            };
+
+            document.getElementById('modalTitle').textContent = missions[missionNumber].title;
+            document.getElementById('modalDescription').textContent = missions[missionNumber].description;
+            document.getElementById('missionModal').style.display = 'flex';
+        }
+
+        function showPurchaseModal() {
+            document.getElementById('purchaseModal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Game Variables
+        let gameRunning = false;
+        let score = 0;
+        let lives = 3;
+        let playerY = 0;
+        let isJumping = false;
+        let obstaclePosition = 700;
+        let gameSpeed = 5;
+        let animationId;
+
+        // Game Functions
+        function jump() {
+            if (!isJumping && gameRunning) {
+                isJumping = true;
+                let jumpHeight = 0;
+                let goingUp = true;
+                
+                const jumpInterval = setInterval(() => {
+                    if (goingUp) {
+                        jumpHeight += 8;
+                        if (jumpHeight >= 120) goingUp = false;
+                    } else {
+                        jumpHeight -= 8;
+                        if (jumpHeight <= 0) {
+                            jumpHeight = 0;
+                            isJumping = false;
+                            clearInterval(jumpInterval);
+                        }
+                    }
+                    document.getElementById('player').style.bottom = (50 + jumpHeight) + 'px';
+                }, 20);
+            }
+        }
+
+        function startGame() {
+            if (gameRunning) return;
+            gameRunning = true;
+            score = 0;
+            lives = 3;
+            obstaclePosition = 700;
+            updateScore();
+            gameLoop();
+        }
+
+        function resetGame() {
+            gameRunning = false;
+            cancelAnimationFrame(animationId);
+            score = 0;
+            lives = 3;
+            obstaclePosition = 700;
+            isJumping = false;
+            document.getElementById('player').style.bottom = '50px';
+            updateScore();
+            
+            // Remove existing obstacles
+            const existingObstacles = document.querySelectorAll('.obstacle');
+            existingObstacles.forEach(obs => obs.remove());
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('lives').textContent = '❤️'.repeat(lives);
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+
+            // Move obstacle
+            obstaclePosition -= gameSpeed;
+            
+            // Remove old obstacle and create new one
+            const existingObstacles = document.querySelectorAll('.obstacle');
+            existingObstacles.forEach(obs => obs.remove());
+
+            if (obstaclePosition < -50) {
+                obstaclePosition = 700;
+                score += 10;
+                gameSpeed += 0.5;
+                updateScore();
+            }
+
+            // Create obstacle
+            const obstacle = document.createElement('div');
+            obstacle.className = 'obstacle';
+            obstacle.textContent = '🌵';
+            obstacle.style.left = obstaclePosition + 'px';
+            document.getElementById('gameCanvas').appendChild(obstacle);
+
+            // Collision detection
+            const playerRect = document.getElementById('player').getBoundingClientRect();
+            const obstacleRect = obstacle.getBoundingClientRect();
+
+            if (
+                playerRect.left < obstacleRect.right &&
+                playerRect.right > obstacleRect.left &&
+                playerRect.bottom > obstacleRect.top + 20
+            ) {
+                lives--;
+                updateScore();
+                obstaclePosition = 700;
+                
+                if (lives <= 0) {
+                    gameRunning = false;
+                    alert('🎮 ¡Juego Terminado! Puntuación: ' + score);
+                }
+            }
+
+            animationId = requestAnimationFrame(gameLoop);
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                jump();
+            }
+        });
+
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartSymbols = ['💖', '💗', '💕', '💓', '💝'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 4 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Initialize
+        createHearts();
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+                // Close mobile menu
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
+
