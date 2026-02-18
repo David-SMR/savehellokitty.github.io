@@ -49,9 +49,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ============================================
-           LOADING SCREEN
-           ============================================ */
+        /* Loading Screen */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -121,9 +119,7 @@
             border-radius: 3px;
         }
 
-        /* ============================================
-           NAVIGATION
-           ============================================ */
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -250,9 +246,7 @@
             transform: scale(1.15);
         }
 
-        /* ============================================
-           HERO SECTION
-           ============================================ */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -551,9 +545,7 @@
             50% { opacity: 0.8; transform: scale(1.05); }
         }
 
-        /* ============================================
-           STORY SECTION
-           ============================================ */
+        /* Story Section */
         .story {
             padding: 10rem 2rem;
             background: var(--white);
@@ -653,9 +645,7 @@
             font-size: 1.05rem;
         }
 
-        /* ============================================
-           GALLERY SECTION
-           ============================================ */
+        /* Gallery Section */
         .gallery {
             padding: 10rem 2rem;
             background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
@@ -728,9 +718,7 @@
             opacity: 0.9;
         }
 
-        /* ============================================
-           MISSIONS SECTION
-           ============================================ */
+        /* Missions Section */
         .missions {
             padding: 10rem 2rem;
             background: var(--white);
@@ -853,9 +841,7 @@
             border-radius: 20px;
         }
 
-        /* ============================================
-           CHARACTERS SECTION
-           ============================================ */
+        /* Characters Section */
         .characters {
             padding: 10rem 2rem;
             background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
@@ -968,9 +954,7 @@
             line-height: 1.85;
         }
 
-        /* ============================================
-           FEATURES SECTION
-           ============================================ */
+        /* Features Section */
         .features {
             padding: 10rem 2rem;
             background: var(--white);
@@ -1028,9 +1012,7 @@
             font-size: 0.95rem;
         }
 
-        /* ============================================
-           PRICING SECTION
-           ============================================ */
+        /* Pricing Section */
         .pricing {
             padding: 10rem 2rem;
             background: linear-gradient(135deg, var(--deep-pink), var(--hot-pink));
@@ -1182,9 +1164,7 @@
             font-size: 0.9rem;
         }
 
-        /* ============================================
-           FOOTER
-           ============================================ */
+        /* Footer */
         .footer {
             background: var(--text-dark);
             color: var(--white);
@@ -1296,9 +1276,7 @@
             color: var(--white);
         }
 
-        /* ============================================
-           MODAL
-           ============================================ */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -1416,9 +1394,7 @@
             font-size: 1.1rem;
         }
 
-        /* ============================================
-           TOAST NOTIFICATION
-           ============================================ */
+        /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 35px;
@@ -1468,9 +1444,7 @@
             font-size: 0.95rem;
         }
 
-        /* ============================================
-           RESPONSIVE
-           ============================================ */
+        /* Responsive */
         @media (max-width: 1024px) {
             .hero-container {
                 grid-template-columns: 1fr;
@@ -1612,9 +1586,7 @@
             }
         }
 
-        /* ============================================
-           SCROLL ANIMATIONS
-           ============================================ */
+        /* Scroll Animations */
         .fade-in {
             opacity: 0;
             transform: translateY(40px);
@@ -1825,7 +1797,7 @@
                     </div>
                     <div class="mission-content">
                         <h3 class="mission-title">The Enchanted Forest</h3>
-                        <p class="mission-description">The player controls the prince as he travels through a magical forest. The forest is full of enemies and traps. The player must jump over obstacles, defeat enemies, and find a key to continue the journey.</p>
+                        <p class="mission-description">The player controls the prince as he travels through a magical forest. The forest is full of enemies and traps. The player must jump over obstacles, defeat enemies, and find a key to continue.</p>
                         <div class="mission-features">
                             <span class="mission-feature">Combat</span>
                             <span class="mission-feature">Platforming</span>
@@ -2087,21 +2059,19 @@
     </div>
 
     <script>
-        // ============================================
-        // LOADING SCREEN
-        // ============================================
-        window.addEventListener('load', () => {
+        // Loading Screen - Fixed to ensure it always hides
+        document.addEventListener('DOMContentLoaded', function() {
             const loadingProgress = document.getElementById('loadingProgress');
             const loadingScreen = document.getElementById('loadingScreen');
             let progress = 0;
             
-            const interval = setInterval(() => {
+            const interval = setInterval(function() {
                 progress += Math.random() * 12 + 6;
                 if (progress >= 100) {
                     progress = 100;
                     clearInterval(interval);
                     loadingProgress.style.width = progress + '%';
-                    setTimeout(() => {
+                    setTimeout(function() {
                         loadingScreen.classList.add('hidden');
                     }, 600);
                 } else {
@@ -2110,10 +2080,8 @@
             }, 100);
         });
 
-        // ============================================
-        // NAVIGATION
-        // ============================================
-        window.addEventListener('scroll', () => {
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 80) {
                 navbar.classList.add('scrolled');
@@ -2122,11 +2090,13 @@
             }
         });
 
+        // Mobile menu toggle
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
 
+        // Scroll to section
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             if (section) {
@@ -2135,29 +2105,25 @@
             document.getElementById('navLinks').classList.remove('active');
         }
 
-        // ============================================
-        // SCROLL ANIMATIONS
-        // ============================================
+        // Scroll animations observer
         const observerOptions = {
             threshold: 0.12,
             rootMargin: '0px 0px -60px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in, .mission-item, .character-card, .pricing-card, .feature-card, .gallery-item').forEach(el => {
+        document.querySelectorAll('.fade-in, .mission-item, .character-card, .pricing-card, .feature-card, .gallery-item').forEach(function(el) {
             observer.observe(el);
         });
 
-        // ============================================
-        // MODAL SYSTEM
-        // ============================================
+        // Mission modal data
         const missions = {
             1: {
                 icon: '1',
@@ -2177,7 +2143,7 @@
             4: {
                 icon: '4',
                 title: 'The Dark Castle',
-                description: 'The prince enters the villain's castle. Inside, there are dark hallways, guards, and puzzles. The player must explore carefully, avoid traps, and find the tower where Princess Hello Kitty is locked away.'
+                description: 'The prince enters the villain\'s castle. Inside, there are dark hallways, guards, and puzzles. The player must explore carefully, avoid traps, and find the tower where Princess Hello Kitty is locked away.'
             },
             5: {
                 icon: '5',
@@ -2202,37 +2168,17 @@
             document.getElementById(modalId).classList.remove('active');
         }
 
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', (e) => {
+        // Close modal on outside click
+        document.querySelectorAll('.modal').forEach(function(modal) {
+            modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
                     modal.classList.remove('active');
                 }
             });
         });
 
-        // ============================================
-        // TOAST NOTIFICATION
-        // ============================================
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const toastIcon = document.getElementById('toastIcon');
-            const toastMessage = document.getElementById('toastMessage');
-            
-            toastIcon.className = 'toast-icon ' + type;
-            toastIcon.textContent = type === 'success' ? '✓' : '✕';
-            toastMessage.textContent = message;
-            
-            toast.classList.add('active');
-            
-            setTimeout(() => {
-                toast.classList.remove('active');
-            }, 3500);
-        }
-
-        // ============================================
-        // SMOOTH SCROLL
-        // ============================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
@@ -2243,10 +2189,8 @@
             });
         });
 
-        // ============================================
-        // PARALLAX EFFECT
-        // ============================================
-        window.addEventListener('scroll', () => {
+        // Parallax effect for hero
+        window.addEventListener('scroll', function() {
             const hero = document.querySelector('.hero');
             const scrolled = window.scrollY;
             if (scrolled < window.innerHeight) {
