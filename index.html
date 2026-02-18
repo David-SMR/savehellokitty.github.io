@@ -1,11 +1,12 @@
+```html
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hello Kitty Prince - Rescue Mission | Official Game Site">
     <meta name="theme-color" content="#FFB6C1">
-    <title>Hello Kitty Prince - Rescue Mission | Sitio Oficial</title>
+    <title>Hello Kitty Prince - Rescue Mission | Official Game Site</title>
     <link href="https://cdn.jsdelivr.net/npm/fontsource-quicksand@5.0.0/index.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/fontsource-montserrat@5.0.0/index.css" rel="stylesheet">
     <style>
@@ -653,11 +654,86 @@
         }
 
         /* ============================================
+           GALLERY SECTION
+           ============================================ */
+        .gallery {
+            padding: 10rem 2rem;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(1) img {
+            height: 575px;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: var(--white);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* ============================================
            MISSIONS SECTION
            ============================================ */
         .missions {
             padding: 10rem 2rem;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+            background: var(--white);
         }
 
         .missions-grid {
@@ -671,7 +747,7 @@
             gap: 3.5rem;
             align-items: center;
             padding: 3.5rem;
-            background: var(--white);
+            background: var(--cream);
             border-radius: 30px;
             box-shadow: var(--shadow-light);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -782,7 +858,7 @@
            ============================================ */
         .characters {
             padding: 10rem 2rem;
-            background: var(--white);
+            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
         }
 
         .characters-grid {
@@ -893,197 +969,63 @@
         }
 
         /* ============================================
-           GAME SECTION
+           FEATURES SECTION
            ============================================ */
-        .game-section {
+        .features {
             padding: 10rem 2rem;
-            background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
-        }
-
-        .game-wrapper {
-            max-width: 1050px;
-            margin: 0 auto;
             background: var(--white);
-            border-radius: 30px;
-            padding: 3rem;
-            box-shadow: var(--shadow-heavy);
-            border: 1px solid rgba(255, 182, 193, 0.3);
         }
 
-        .game-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid var(--light-pink);
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .game-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.7rem;
-            color: var(--text-dark);
-            font-weight: 700;
-        }
-
-        .game-stats {
-            display: flex;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 2.5rem;
         }
 
-        .game-stat {
+        .feature-card {
             text-align: center;
-            background: var(--light-pink);
-            padding: 0.8rem 1.5rem;
-            border-radius: 15px;
-        }
-
-        .game-stat-label {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 700;
-        }
-
-        .game-stat-value {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--deep-pink);
-        }
-
-        .game-canvas-container {
-            width: 100%;
-            height: 480px;
-            background: linear-gradient(180deg, #87CEEB 0%, #98FB98 100%);
-            border-radius: 22px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.1);
-            border: 3px solid var(--primary-pink);
-        }
-
-        #gameCanvas {
-            width: 100%;
-            height: 100%;
-        }
-
-        .game-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: var(--white);
-            z-index: 10;
-            backdrop-filter: blur(5px);
-        }
-
-        .game-overlay.active {
-            display: flex;
-            animation: overlayFadeIn 0.4s ease;
-        }
-
-        @keyframes overlayFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .game-overlay-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 20px rgba(255, 105, 180, 0.5);
-        }
-
-        .game-overlay-score {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            color: var(--primary-pink);
-        }
-
-        .game-controls {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .game-btn {
-            padding: 1.1rem 2.3rem;
-            background: linear-gradient(135deg, var(--deep-pink), var(--hot-pink));
-            color: var(--white);
-            border: none;
-            border-radius: 15px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            min-width: 150px;
-            justify-content: center;
-            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.35);
-        }
-
-        .game-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
-        }
-
-        .game-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .game-instructions {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid var(--light-pink);
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        .game-instructions kbd {
+            padding: 3rem 2rem;
             background: var(--cream);
-            padding: 0.4rem 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--primary-pink);
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 700;
-            display: inline-block;
-            margin: 0 0.4rem;
-            color: var(--deep-pink);
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .security-badge {
-            display: inline-flex;
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--deep-pink));
+            border-radius: 50%;
+            display: flex;
             align-items: center;
-            gap: 10px;
-            background: rgba(76, 175, 80, 0.1);
-            color: var(--success);
-            padding: 0.6rem 1.3rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-top: 1.5rem;
+            justify-content: center;
+            font-size: 2.5rem;
         }
 
-        .security-badge svg {
-            width: 20px;
-            height: 20px;
+        .feature-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .feature-text {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 0.95rem;
         }
 
         /* ============================================
@@ -1559,6 +1501,22 @@
                 grid-template-columns: 1fr;
             }
 
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+            }
+
+            .gallery-item:nth-child(1) img {
+                height: 400px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
             .characters-grid {
                 grid-template-columns: 1fr;
             }
@@ -1637,17 +1595,16 @@
                 text-align: center;
             }
 
-            .game-wrapper {
-                padding: 2rem;
+            .gallery-grid {
+                grid-template-columns: 1fr;
             }
 
-            .game-canvas-container {
-                height: 380px;
+            .gallery-item:nth-child(1) {
+                grid-column: span 1;
             }
 
-            .game-stats {
-                width: 100%;
-                justify-content: center;
+            .gallery-item:nth-child(1) img {
+                height: 280px;
             }
 
             .characters-grid {
@@ -1675,7 +1632,7 @@
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-content">
             <div class="loading-logo">🎀</div>
-            <div class="loading-text">CARGANDO AVENTURA</div>
+            <div class="loading-text">LOADING ADVENTURE</div>
             <div class="loading-bar">
                 <div class="loading-progress" id="loadingProgress"></div>
             </div>
@@ -1689,46 +1646,46 @@
                 <div class="logo-icon">👑</div>
                 <span>Hello Kitty Prince</span>
             </a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menú">☰</button>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#historia">Historia</a></li>
-                <li><a href="#misiones">Misiones</a></li>
-                <li><a href="#personajes">Personajes</a></li>
-                <li><a href="#juego">Demo</a></li>
-                <li><a href="#precio" class="nav-cta">Comprar</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#story">Story</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#missions">Missions</a></li>
+                <li><a href="#characters">Characters</a></li>
+                <li><a href="#price" class="nav-cta">Buy Now</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="inicio">
+    <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-content">
-                <span class="hero-badge">NUEVO LANZAMIENTO 2024</span>
-                <h1>Una Aventura <span>Mágica</span> Te Espera</h1>
-                <p>Embárcate en una épica misión para rescatar a la Princesa Hello Kitty del malvado Príncipe Villano. Cinco misiones llenas de desafíos, puzzles y batallas intensas en el reino de Alicante.</p>
+                <span class="hero-badge">NEW RELEASE 2024</span>
+                <h1>A <span>Magical</span> Adventure Awaits</h1>
+                <p>Embark on an epic quest to rescue Princess Hello Kitty from the evil Prince Villain. Five missions filled with challenges, puzzles, and intense battles in the kingdom of Alicante.</p>
                 <div class="hero-buttons">
-                    <button class="btn-primary" onclick="scrollToSection('juego')">
-                        <span>Jugar Demo</span>
+                    <button class="btn-primary" onclick="scrollToSection('missions')">
+                        <span>Explore Missions</span>
                         <span>→</span>
                     </button>
-                    <button class="btn-secondary" onclick="scrollToSection('historia')">
-                        <span>Ver Historia</span>
+                    <button class="btn-secondary" onclick="scrollToSection('story')">
+                        <span>View Story</span>
                     </button>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
                         <span class="stat-number">5</span>
-                        <span class="stat-label">Misiones</span>
+                        <span class="stat-label">Missions</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">3</span>
-                        <span class="stat-label">Personajes</span>
+                        <span class="stat-label">Characters</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">20+</span>
-                        <span class="stat-label">Niveles</span>
+                        <span class="stat-label">Levels</span>
                     </div>
                 </div>
             </div>
@@ -1743,12 +1700,12 @@
     </section>
 
     <!-- Story Section -->
-    <section class="story" id="historia">
+    <section class="story" id="story">
         <div class="section-container">
             <div class="section-header fade-in">
-                <span class="section-tag">LA HISTORIA</span>
-                <h2 class="section-title">El Reino de Alicante</h2>
-                <p class="section-subtitle">En un lugar lejano, donde la magia y la aventura se entrelazan, una princesa necesita ayuda.</p>
+                <span class="section-tag">THE STORY</span>
+                <h2 class="section-title">The Kingdom of Alicante</h2>
+                <p class="section-subtitle">In a distant land, where magic and adventure intertwine, a princess needs help.</p>
             </div>
             <div class="story-content">
                 <div class="story-image-wrapper fade-in">
@@ -1756,11 +1713,11 @@
                     <div class="story-image-overlay"></div>
                 </div>
                 <div class="story-text fade-in">
-                    <h3>El Comienzo de una Aventura</h3>
-                    <p>El juego comienza en el pacífico reino de Alicante, donde la Princesa Hello Kitty vive tranquilamente. Los jugadores exploran el majestuoso castillo y aprenden los controles básicos del juego.</p>
-                    <p>De repente, la paz se ve interrumpida cuando el malvado Príncipe Villano aparece y secuestra a la princesa. El héroe debe escapar del castillo y embarcarse en una peligrosa misión de rescate que lo llevará a través de bosques encantados, puentes peligrosos y el oscuro castillo del villano.</p>
-                    <button class="btn-primary" onclick="scrollToSection('misiones')">
-                        <span>Explorar Misiones</span>
+                    <h3>The Beginning of an Adventure</h3>
+                    <p>The game starts in the peaceful kingdom of Alicante where Princess Hello Kitty lives. The player explores the castle and learns the basic controls. Suddenly, the villain appears and kidnaps the princess.</p>
+                    <p>The mission ends when the prince escapes the castle to begin the rescue. Journey through enchanted forests, dangerous bridges, and the dark castle of the villain to save the princess and restore peace to the kingdom.</p>
+                    <button class="btn-primary" onclick="scrollToSection('missions')">
+                        <span>Explore Missions</span>
                         <span>→</span>
                     </button>
                 </div>
@@ -1768,13 +1725,82 @@
         </div>
     </section>
 
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-tag">GAME GALLERY</span>
+                <h2 class="section-title">Screenshots & Artwork</h2>
+                <p class="section-subtitle">Explore the beautiful world of Hello Kitty Prince through our curated gallery.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in">
+                    <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/1133bf5cc-5625-46c1-8b29-b37167754969.png" alt="Princess Hello Kitty">
+                    <div class="gallery-overlay">
+                        <h4>Princess Hello Kitty</h4>
+                        <p>The beloved princess of Alicante</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/1c8a36775-7173-4189-aab8-bba386b12e76.png" alt="The Castle">
+                    <div class="gallery-overlay">
+                        <h4>The Castle</h4>
+                        <p>Where the adventure begins</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/1231d92e7-c6dd-4907-8e47-5b9a91e3d0dc.png" alt="Enchanted Forest">
+                    <div class="gallery-overlay">
+                        <h4>Enchanted Forest</h4>
+                        <p>Mystical woods full of secrets</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/19b2e3bfb-2eb5-440c-b2cb-097e0d3d9d83.png" alt="Dangerous Bridge">
+                    <div class="gallery-overlay">
+                        <h4>Dangerous Bridge</h4>
+                        <p>Cross if you dare</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/12cc43ffe-138b-4dc7-bde4-d5429b03929f.png" alt="Dark Castle">
+                    <div class="gallery-overlay">
+                        <h4>Dark Castle</h4>
+                        <p>The villain's stronghold</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/190d69ea5-9bd4-402e-9b11-b3542db7d3b5.png" alt="Final Battle">
+                    <div class="gallery-overlay">
+                        <h4>Final Battle</h4>
+                        <p>The ultimate showdown</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/189e3a507-8cad-475d-82cf-627a427548c3.png" alt="Villain Prince">
+                    <div class="gallery-overlay">
+                        <h4>Villain Prince</h4>
+                        <p>The main antagonist</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/1ed162158-35f3-4a41-b84d-e64372242a6f.png" alt="Hero Prince">
+                    <div class="gallery-overlay">
+                        <h4>Hero Prince</h4>
+                        <p>The brave rescuer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Missions Section -->
-    <section class="missions" id="misiones">
+    <section class="missions" id="missions">
         <div class="section-container">
             <div class="section-header fade-in">
                 <span class="section-tag">GAMEPLAY</span>
-                <h2 class="section-title">Cinco Misiones Épicas</h2>
-                <p class="section-subtitle">Cada misión presenta nuevos desafíos, enemigos y mecánicas de juego únicas.</p>
+                <h2 class="section-title">Five Epic Missions</h2>
+                <p class="section-subtitle">Each mission presents new challenges, enemies, and unique gameplay mechanics.</p>
             </div>
             <div class="missions-grid">
                 <div class="mission-item fade-in" onclick="showMissionModal(1)">
@@ -1783,11 +1809,11 @@
                         <div class="mission-number">1</div>
                     </div>
                     <div class="mission-content">
-                        <h3 class="mission-title">El Secuestro del Castillo</h3>
-                        <p class="mission-description">El juego comienza en el pacífico reino de Alicante donde vive la Princesa Hello Kitty. El jugador explora el castillo y aprende los controles básicos. De repente, el villano aparece y secuestra a la princesa.</p>
+                        <h3 class="mission-title">The Castle Kidnapping</h3>
+                        <p class="mission-description">The game starts in the peaceful kingdom of Alicante where Princess Hello Kitty lives. The player explores the castle and learns the basic controls. Suddenly, the villain appears and kidnaps the princess.</p>
                         <div class="mission-features">
                             <span class="mission-feature">Tutorial</span>
-                            <span class="mission-feature">Exploración</span>
+                            <span class="mission-feature">Exploration</span>
                             <span class="mission-feature">Cutscene</span>
                         </div>
                     </div>
@@ -1798,12 +1824,12 @@
                         <div class="mission-number">2</div>
                     </div>
                     <div class="mission-content">
-                        <h3 class="mission-title">El Bosque Encantado</h3>
-                        <p class="mission-description">El jugador controla al príncipe mientras viaja por un bosque mágico lleno de enemigos y trampas. Debe saltar sobre obstáculos, derrotar enemigos y encontrar una llave para continuar.</p>
+                        <h3 class="mission-title">The Enchanted Forest</h3>
+                        <p class="mission-description">The player controls the prince as he travels through a magical forest. The forest is full of enemies and traps. The player must jump over obstacles, defeat enemies, and find a key to continue the journey.</p>
                         <div class="mission-features">
-                            <span class="mission-feature">Combate</span>
-                            <span class="mission-feature">Plataformas</span>
-                            <span class="mission-feature">Coleccionables</span>
+                            <span class="mission-feature">Combat</span>
+                            <span class="mission-feature">Platforming</span>
+                            <span class="mission-feature">Collectibles</span>
                         </div>
                     </div>
                 </div>
@@ -1813,12 +1839,12 @@
                         <div class="mission-number">3</div>
                     </div>
                     <div class="mission-content">
-                        <h3 class="mission-title">El Puente Peligroso</h3>
-                        <p class="mission-description">El príncipe llega a un largo puente sobre un cañón profundo. El jugador debe saltar entre plataformas móviles y evitar trampas mientras los power-ups ayudan a sobrevivir.</p>
+                        <h3 class="mission-title">The Dangerous Bridge</h3>
+                        <p class="mission-description">The prince reaches a long bridge above a deep canyon. The player must jump between moving platforms and avoid traps. Power-ups help the prince survive and reach the other side safely.</p>
                         <div class="mission-features">
-                            <span class="mission-feature">Plataformas Móviles</span>
+                            <span class="mission-feature">Moving Platforms</span>
                             <span class="mission-feature">Power-ups</span>
-                            <span class="mission-feature">Precisión</span>
+                            <span class="mission-feature">Precision</span>
                         </div>
                     </div>
                 </div>
@@ -1828,12 +1854,12 @@
                         <div class="mission-number">4</div>
                     </div>
                     <div class="mission-content">
-                        <h3 class="mission-title">El Castillo Oscuro</h3>
-                        <p class="mission-description">El príncipe entra al castillo del villano. En el interior hay pasillos oscuros, guardias y puzzles. El jugador debe explorar cuidadosamente y encontrar la torre donde la princesa está encerrada.</p>
+                        <h3 class="mission-title">The Dark Castle</h3>
+                        <p class="mission-description">The prince enters the villain's castle. Inside, there are dark hallways, guards, and puzzles. The player must explore carefully, avoid traps, and find the tower where Princess Hello Kitty is locked away.</p>
                         <div class="mission-features">
                             <span class="mission-feature">Puzzles</span>
-                            <span class="mission-feature">Sigilo</span>
-                            <span class="mission-feature">Exploración</span>
+                            <span class="mission-feature">Stealth</span>
+                            <span class="mission-feature">Exploration</span>
                         </div>
                     </div>
                 </div>
@@ -1843,12 +1869,12 @@
                         <div class="mission-number">5</div>
                     </div>
                     <div class="mission-content">
-                        <h3 class="mission-title">Batalla Final y Rescate</h3>
-                        <p class="mission-description">En la misión final, el príncipe se enfrenta al villano en una batalla intensa. El jugador debe esquivar ataques y usar todas las habilidades aprendidas. Después de derrotar al villano, rescata a la princesa.</p>
+                        <h3 class="mission-title">Final Battle and Rescue</h3>
+                        <p class="mission-description">In the final mission, the prince faces the villain in an intense battle. The player must dodge attacks and use all learned skills. After defeating the villain, the prince rescues Princess Hello Kitty and peace returns to the kingdom.</p>
                         <div class="mission-features">
-                            <span class="mission-feature">Jefe Final</span>
-                            <span class="mission-feature">Habilidades</span>
-                            <span class="mission-feature">Final Épico</span>
+                            <span class="mission-feature">Boss Fight</span>
+                            <span class="mission-feature">Skills</span>
+                            <span class="mission-feature">Epic Finale</span>
                         </div>
                     </div>
                 </div>
@@ -1857,12 +1883,12 @@
     </section>
 
     <!-- Characters Section -->
-    <section class="characters" id="personajes">
+    <section class="characters" id="characters">
         <div class="section-container">
             <div class="section-header fade-in">
-                <span class="section-tag">PERSONAJES</span>
-                <h2 class="section-title">Conoce a los Héroes</h2>
-                <p class="section-subtitle">Cada personaje tiene su propia historia y habilidades únicas.</p>
+                <span class="section-tag">CHARACTERS</span>
+                <h2 class="section-title">Meet the Heroes</h2>
+                <p class="section-subtitle">Each character has their own story and unique abilities.</p>
             </div>
             <div class="characters-grid">
                 <div class="character-card fade-in">
@@ -1870,117 +1896,99 @@
                         <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/1c8a36775-7173-4189-aab8-bba386b12e76.png" alt="Princess Hello Kitty" class="character-image">
                         <div class="character-badge">👸</div>
                     </div>
-                    <h3 class="character-name">Princesa Hello Kitty</h3>
-                    <p class="character-role">La Princesa a Rescatar</p>
-                    <p class="character-description">Habitante del pacífico reino de Alicante. Su bondad y gracia han traído paz al reino hasta que fue secuestrada por el malvado príncipe.</p>
+                    <h3 class="character-name">Princess Hello Kitty</h3>
+                    <p class="character-role">The Princess to Rescue</p>
+                    <p class="character-description">Inhabitant of the peaceful kingdom of Alicante. Her kindness and grace have brought peace to the kingdom until she was kidnapped by the evil prince.</p>
                 </div>
                 <div class="character-card fade-in">
                     <div class="character-image-wrapper">
                         <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/189e3a507-8cad-475d-82cf-627a427548c3.png" alt="Villain Prince" class="character-image">
                         <div class="character-badge">😈</div>
                     </div>
-                    <h3 class="character-name">Príncipe Villano</h3>
-                    <p class="character-role">El Antagonista</p>
-                    <p class="character-description">Un príncipe oscuro que busca conquistar el reino de Alicante. Secuestró a la princesa para extender su poder sobre todas las tierras.</p>
+                    <h3 class="character-name">Villain Prince</h3>
+                    <p class="character-role">The Antagonist</p>
+                    <p class="character-description">A dark prince who seeks to conquer the kingdom of Alicante. He kidnapped the princess to extend his power over all the lands.</p>
                 </div>
                 <div class="character-card fade-in">
                     <div class="character-image-wrapper">
                         <img src="https://image.qwenlm.ai/public_source/6f52ffc6-07df-4a1e-90dd-ce846840691f/1ed162158-35f3-4a41-b84d-e64372242a6f.png" alt="Hero Prince" class="character-image">
                         <div class="character-badge">🦸</div>
                     </div>
-                    <h3 class="character-name">Príncipe Héroe</h3>
-                    <p class="character-role">El Jugador</p>
-                    <p class="character-description">Un valiente príncipe que se embarca en una peligrosa misión para rescatar a la Princesa Hello Kitty y restaurar la paz en el reino.</p>
+                    <h3 class="character-name">Hero Prince</h3>
+                    <p class="character-role">The Player</p>
+                    <p class="character-description">A brave prince who embarks on a dangerous mission to rescue Princess Hello Kitty and restore peace to the kingdom.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Game Section -->
-    <section class="game-section" id="juego">
+    <!-- Features Section -->
+    <section class="features">
         <div class="section-container">
             <div class="section-header fade-in">
-                <span class="section-tag">DEMO INTERACTIVA</span>
-                <h2 class="section-title">Prueba el Juego</h2>
-                <p class="section-subtitle">Experimenta una muestra de la acción y los desafíos que te esperan.</p>
+                <span class="section-tag">FEATURES</span>
+                <h2 class="section-title">Game Features</h2>
+                <p class="section-subtitle">Discover what makes Hello Kitty Prince a unique gaming experience.</p>
             </div>
-            <div class="game-wrapper fade-in">
-                <div class="game-header">
-                    <h3 class="game-title">🏃 Rescate en el Bosque</h3>
-                    <div class="game-stats">
-                        <div class="game-stat">
-                            <div class="game-stat-label">Puntuación</div>
-                            <div class="game-stat-value" id="score">0</div>
-                        </div>
-                        <div class="game-stat">
-                            <div class="game-stat-label">Vidas</div>
-                            <div class="game-stat-value" id="lives">❤️❤️❤️</div>
-                        </div>
-                        <div class="game-stat">
-                            <div class="game-stat-label">Nivel</div>
-                            <div class="game-stat-value" id="level">1</div>
-                        </div>
-                    </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎮</div>
+                    <h4 class="feature-title">Engaging Gameplay</h4>
+                    <p class="feature-text">Smooth controls and intuitive mechanics make every mission enjoyable and challenging.</p>
                 </div>
-                <div class="game-canvas-container" id="gameContainer">
-                    <canvas id="gameCanvas"></canvas>
-                    <div class="game-overlay" id="gameOverlay">
-                        <div class="game-overlay-title" id="overlayTitle">¡Juego Terminado!</div>
-                        <div class="game-overlay-score" id="overlayScore">Puntuación: 0</div>
-                        <button class="btn-primary" onclick="resetGame()">Jugar de Nuevo</button>
-                    </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎨</div>
+                    <h4 class="feature-title">Beautiful Art</h4>
+                    <p class="feature-text">Stunning visuals with a charming art style that brings the kingdom to life.</p>
                 </div>
-                <div class="game-controls">
-                    <button class="game-btn" id="startBtn" onclick="startGame()">
-                        <span>▶</span>
-                        <span>Iniciar</span>
-                    </button>
-                    <button class="game-btn" id="pauseBtn" onclick="togglePause()" disabled>
-                        <span>⏸</span>
-                        <span>Pausar</span>
-                    </button>
-                    <button class="game-btn" id="resetBtn" onclick="resetGame()" disabled>
-                        <span>↻</span>
-                        <span>Reiniciar</span>
-                    </button>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎵</div>
+                    <h4 class="feature-title">Immersive Sound</h4>
+                    <p class="feature-text">Original soundtrack and sound effects that enhance the gaming experience.</p>
                 </div>
-                <div class="game-instructions">
-                    <p>Controles: <kbd>ESPACIO</kbd> o <kbd>↑</kbd> para saltar | <kbd>↓</kbd> para agacharse | Doble salto disponible</p>
-                    <div class="security-badge">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                        <span>Juego seguro - Sin descargas requeridas</span>
-                    </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🏆</div>
+                    <h4 class="feature-title">Achievements</h4>
+                    <p class="feature-text">Unlock achievements and compete on leaderboards with players worldwide.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔄</div>
+                    <h4 class="feature-title">Regular Updates</h4>
+                    <p class="feature-text">Free content updates with new levels, characters, and features.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🌍</div>
+                    <h4 class="feature-title">Multi-Platform</h4>
+                    <p class="feature-text">Play on PC, Console, and Mobile devices with cross-platform support.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section class="pricing" id="precio">
+    <section class="pricing" id="price">
         <div class="section-container">
             <div class="section-header fade-in">
-                <span class="section-tag">EDICIÓN ESPECIAL</span>
-                <h2 class="section-title">Consigue el Juego</h2>
-                <p class="section-subtitle">Acceso completo a todas las misiones, personajes y contenido exclusivo.</p>
+                <span class="section-tag">SPECIAL EDITION</span>
+                <h2 class="section-title">Get the Game</h2>
+                <p class="section-subtitle">Full access to all missions, characters, and exclusive content.</p>
             </div>
             <div class="pricing-card fade-in">
-                <div class="pricing-badge">Oferta de Lanzamiento</div>
+                <div class="pricing-badge">Launch Offer</div>
                 <div class="pricing-amount">29.99<span> USD</span></div>
-                <p class="pricing-period">Pago único - Acceso permanente</p>
+                <p class="pricing-period">One-time payment - Permanent access</p>
                 <ul class="pricing-features">
-                    <li>5 Misiones completas con historia épica</li>
-                    <li>3 Personajes jugables exclusivos</li>
-                    <li>Más de 20 niveles de desafío</li>
-                    <li>Skins y personalización de personajes</li>
-                    <li>Power-ups y habilidades especiales</li>
-                    <li>Soporte multiplataforma (PC, Mobile, Console)</li>
-                    <li>Actualizaciones de contenido gratuitas</li>
-                    <li>Comunidad online y leaderboard</li>
+                    <li>5 Complete missions with epic story</li>
+                    <li>3 Exclusive playable characters</li>
+                    <li>Over 20 challenge levels</li>
+                    <li>Character skins and customization</li>
+                    <li>Power-ups and special abilities</li>
+                    <li>Multi-platform support (PC, Mobile, Console)</li>
+                    <li>Free content updates</li>
+                    <li>Online community and leaderboard</li>
                 </ul>
-                <button class="pricing-btn" onclick="showPurchaseModal()">Comprar Ahora</button>
-                <p class="pricing-guarantee">🔒 Pago seguro con garantía de devolución de 30 días</p>
+                <button class="pricing-btn" onclick="showPurchaseModal()">Buy Now</button>
+                <p class="pricing-guarantee">🔒 Secure payment with 30-day money-back guarantee</p>
             </div>
         </div>
     </section>
@@ -1994,7 +2002,7 @@
                         <div class="logo-icon">👑</div>
                         <span>Hello Kitty Prince</span>
                     </a>
-                    <p>Una aventura mágica que combina acción, plataformas y una historia encantadora. Únete a la misión de rescate más esperada del año.</p>
+                    <p>A magical adventure combining action, platforming, and an enchanting story. Join the most anticipated rescue mission of the year.</p>
                     <div class="footer-social">
                         <a href="#" aria-label="Facebook">f</a>
                         <a href="#" aria-label="Twitter">𝕏</a>
@@ -2003,39 +2011,39 @@
                     </div>
                 </div>
                 <div class="footer-links">
-                    <h4>Juego</h4>
+                    <h4>Game</h4>
                     <ul>
-                        <li><a href="#historia">Historia</a></li>
-                        <li><a href="#misiones">Misiones</a></li>
-                        <li><a href="#personajes">Personajes</a></li>
-                        <li><a href="#juego">Demo</a></li>
+                        <li><a href="#story">Story</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#missions">Missions</a></li>
+                        <li><a href="#characters">Characters</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h4>Soporte</h4>
+                    <h4>Support</h4>
                     <ul>
-                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Help Center</a></li>
                         <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Reportar Bug</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Report Bug</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h4>Empresa</h4>
+                    <h4>Company</h4>
                     <ul>
-                        <li><a href="#">Sobre Nosotros</a></li>
-                        <li><a href="#">Carreras</a></li>
-                        <li><a href="#">Prensa</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
                         <li><a href="#">Partners</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Hello Kitty Prince Game. Todos los derechos reservados.</p>
+                <p>&copy; 2024 Hello Kitty Prince Game. All rights reserved.</p>
                 <div class="footer-legal">
-                    <a href="#">Política de Privacidad</a>
-                    <a href="#">Términos de Servicio</a>
-                    <a href="#">Política de Cookies</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
                 </div>
             </div>
         </div>
@@ -2044,21 +2052,21 @@
     <!-- Mission Modal -->
     <div class="modal" id="missionModal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('missionModal')" aria-label="Cerrar">&times;</button>
+            <button class="modal-close" onclick="closeModal('missionModal')" aria-label="Close">&times;</button>
             <div class="modal-icon" id="modalIcon">1</div>
             <h3 class="modal-title" id="modalTitle"></h3>
             <p class="modal-text" id="modalDescription"></p>
-            <button class="btn-primary" onclick="closeModal('missionModal')">Cerrar</button>
+            <button class="btn-primary" onclick="closeModal('missionModal')">Close</button>
         </div>
     </div>
 
     <!-- Purchase Modal -->
     <div class="modal" id="purchaseModal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('purchaseModal')" aria-label="Cerrar">&times;</button>
+            <button class="modal-close" onclick="closeModal('purchaseModal')" aria-label="Close">&times;</button>
             <div class="modal-icon">🛒</div>
-            <h3 class="modal-title">Gracias por tu Interés</h3>
-            <p class="modal-text">Hello Kitty Prince estará disponible pronto en las siguientes plataformas:</p>
+            <h3 class="modal-title">Thank You for Your Interest</h3>
+            <p class="modal-text">Hello Kitty Prince will be available soon on the following platforms:</p>
             <ul class="modal-list">
                 <li>Steam (PC/Mac)</li>
                 <li>Nintendo Switch</li>
@@ -2067,35 +2075,18 @@
                 <li>iOS App Store</li>
                 <li>Google Play Store</li>
             </ul>
-            <p class="modal-text" style="color: var(--deep-pink); font-weight: 700;">Precio de Lanzamiento: $29.99 USD</p>
-            <button class="btn-primary" onclick="closeModal('purchaseModal')">Cerrar</button>
+            <p class="modal-text" style="color: var(--deep-pink); font-weight: 700;">Launch Price: $29.99 USD</p>
+            <button class="btn-primary" onclick="closeModal('purchaseModal')">Close</button>
         </div>
     </div>
 
     <!-- Toast Notification -->
     <div class="toast" id="toast">
         <div class="toast-icon success" id="toastIcon">✓</div>
-        <div class="toast-message" id="toastMessage">Mensaje</div>
+        <div class="toast-message" id="toastMessage">Message</div>
     </div>
 
     <script>
-        // ============================================
-        // CONFIGURATION
-        // ============================================
-        const CONFIG = {
-            game: {
-                fps: 60,
-                gravity: 0.65,
-                jumpForce: -14,
-                speed: 6,
-                doubleJumpEnabled: true
-            },
-            security: {
-                sanitizeInput: true,
-                preventXSS: true
-            }
-        };
-
         // ============================================
         // LOADING SCREEN
         // ============================================
@@ -2112,7 +2103,6 @@
                     loadingProgress.style.width = progress + '%';
                     setTimeout(() => {
                         loadingScreen.classList.add('hidden');
-                        initGame();
                     }, 600);
                 } else {
                     loadingProgress.style.width = progress + '%';
@@ -2161,7 +2151,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in, .mission-item, .character-card, .pricing-card').forEach(el => {
+        document.querySelectorAll('.fade-in, .mission-item, .character-card, .pricing-card, .feature-card, .gallery-item').forEach(el => {
             observer.observe(el);
         });
 
@@ -2171,28 +2161,28 @@
         const missions = {
             1: {
                 icon: '1',
-                title: 'El Secuestro del Castillo',
-                description: 'El juego comienza en el pacífico reino de Alicante donde vive la Princesa Hello Kitty. El jugador explora el castillo y aprende los controles básicos. De repente, el villano aparece y secuestra a la princesa. La misión termina cuando el príncipe escapa del castillo para comenzar el rescate.'
+                title: 'The Castle Kidnapping',
+                description: 'The game starts in the peaceful kingdom of Alicante where Princess Hello Kitty lives. The player explores the castle and learns the basic controls. Suddenly, the villain appears and kidnaps the princess. The mission ends when the prince escapes the castle to begin the rescue.'
             },
             2: {
                 icon: '2',
-                title: 'El Bosque Encantado',
-                description: 'El jugador controla al príncipe mientras viaja por un bosque mágico. El bosque está lleno de enemigos y trampas. El jugador debe saltar sobre obstáculos, derrotar enemigos y encontrar una llave para continuar el viaje.'
+                title: 'The Enchanted Forest',
+                description: 'The player controls the prince as he travels through a magical forest. The forest is full of enemies and traps. The player must jump over obstacles, defeat enemies, and find a key to continue the journey.'
             },
             3: {
                 icon: '3',
-                title: 'El Puente Peligroso',
-                description: 'El príncipe llega a un largo puente sobre un cañón profundo. El jugador debe saltar entre plataformas móviles y evitar trampas. Los power-ups ayudan al príncipe a sobrevivir y llegar al otro lado de forma segura.'
+                title: 'The Dangerous Bridge',
+                description: 'The prince reaches a long bridge above a deep canyon. The player must jump between moving platforms and avoid traps. Power-ups help the prince survive and reach the other side safely.'
             },
             4: {
                 icon: '4',
-                title: 'El Castillo Oscuro',
-                description: 'El príncipe entra al castillo del villano. En el interior, hay pasillos oscuros, guardias y puzzles. El jugador debe explorar cuidadosamente, evitar trampas y encontrar la torre donde la Princesa Hello Kitty está encerrada.'
+                title: 'The Dark Castle',
+                description: 'The prince enters the villain's castle. Inside, there are dark hallways, guards, and puzzles. The player must explore carefully, avoid traps, and find the tower where Princess Hello Kitty is locked away.'
             },
             5: {
                 icon: '5',
-                title: 'Batalla Final y Rescate',
-                description: 'En la misión final, el príncipe se enfrenta al villano en una batalla intensa. El jugador debe esquivar ataques y usar todas las habilidades aprendidas. Después de derrotar al villano, el príncipe rescata a la Princesa Hello Kitty y la paz regresa al reino.'
+                title: 'Final Battle and Rescue',
+                description: 'In the final mission, the prince faces the villain in an intense battle. The player must dodge attacks and use all learned skills. After defeating the villain, the prince rescues Princess Hello Kitty and peace returns to the kingdom.'
             }
         };
 
@@ -2240,500 +2230,6 @@
         }
 
         // ============================================
-        // GAME ENGINE
-        // ============================================
-        let canvas, ctx;
-        let gameRunning = false;
-        let gamePaused = false;
-        let animationId;
-        let lastTime = 0;
-
-        const gameState = {
-            score: 0,
-            lives: 3,
-            level: 1,
-            highScore: localStorage.getItem('hkp_highscore') || 0
-        };
-
-        const player = {
-            x: 80,
-            y: 0,
-            width: 55,
-            height: 65,
-            velocityY: 0,
-            velocityX: 0,
-            isJumping: false,
-            canDoubleJump: true,
-            isDucking: false,
-            sprite: '👸'
-        };
-
-        let obstacles = [];
-        let collectibles = [];
-        let platforms = [];
-        let particles = [];
-
-        function initGame() {
-            canvas = document.getElementById('gameCanvas');
-            ctx = canvas.getContext('2d');
-            
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-            
-            setupControls();
-            renderGame();
-        }
-
-        function resizeCanvas() {
-            const container = document.getElementById('gameContainer');
-            canvas.width = container.clientWidth;
-            canvas.height = container.clientHeight;
-            
-            player.y = canvas.height - 150;
-            
-            if (!gameRunning) {
-                renderGame();
-            }
-        }
-
-        function setupControls() {
-            document.addEventListener('keydown', handleKeyDown);
-            document.addEventListener('keyup', handleKeyUp);
-            
-            canvas.addEventListener('touchstart', handleTouchStart);
-            canvas.addEventListener('touchend', handleTouchEnd);
-        }
-
-        function handleKeyDown(e) {
-            if (e.code === 'Space' || e.code === 'ArrowUp') {
-                e.preventDefault();
-                if (!gameRunning && document.getElementById('startBtn').disabled === false) {
-                    startGame();
-                } else {
-                    jump();
-                }
-            }
-            if (e.code === 'ArrowDown') {
-                e.preventDefault();
-                duck(true);
-            }
-            if (e.code === 'Escape') {
-                togglePause();
-            }
-        }
-
-        function handleKeyUp(e) {
-            if (e.code === 'ArrowDown') {
-                duck(false);
-            }
-        }
-
-        function handleTouchStart(e) {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const rect = canvas.getBoundingClientRect();
-            const touchY = touch.clientY - rect.top;
-            
-            if (touchY < canvas.height / 2) {
-                jump();
-            } else {
-                duck(true);
-            }
-        }
-
-        function handleTouchEnd(e) {
-            e.preventDefault();
-            duck(false);
-        }
-
-        function jump() {
-            if (!gameRunning || gamePaused) return;
-            
-            if (!player.isJumping) {
-                player.velocityY = CONFIG.game.jumpForce;
-                player.isJumping = true;
-                player.canDoubleJump = true;
-                createParticles(player.x + player.width/2, player.y + player.height, 6);
-            } else if (player.canDoubleJump && CONFIG.game.doubleJumpEnabled) {
-                player.velocityY = CONFIG.game.jumpForce * 0.75;
-                player.canDoubleJump = false;
-                createParticles(player.x + player.width/2, player.y + player.height, 10);
-            }
-        }
-
-        function duck(isDucking) {
-            if (!gameRunning || gamePaused) return;
-            player.isDucking = isDucking;
-            player.height = isDucking ? 38 : 65;
-        }
-
-        function createParticles(x, y, count) {
-            for (let i = 0; i < count; i++) {
-                particles.push({
-                    x: x,
-                    y: y,
-                    velocityX: (Math.random() - 0.5) * 10,
-                    velocityY: (Math.random() - 0.5) * 10,
-                    size: Math.random() * 6 + 2,
-                    life: 1,
-                    color: `hsl(${Math.random() * 60 + 300}, 85%, 72%)`
-                });
-            }
-        }
-
-        function spawnObstacle() {
-            const types = ['🌵', '🪨', '🌲', '🍄'];
-            const type = types[Math.floor(Math.random() * types.length)];
-            
-            obstacles.push({
-                x: canvas.width,
-                y: canvas.height - 100,
-                width: 45,
-                height: 45,
-                type: type,
-                passed: false
-            });
-        }
-
-        function spawnCollectible() {
-            const types = ['💎', '⭐', '🌸', '💖'];
-            const type = types[Math.floor(Math.random() * types.length)];
-            
-            collectibles.push({
-                x: canvas.width,
-                y: canvas.height - 150 - Math.random() * 120,
-                width: 35,
-                height: 35,
-                type: type,
-                collected: false
-            });
-        }
-
-        function spawnPlatform() {
-            platforms.push({
-                x: canvas.width,
-                y: canvas.height - 150 - Math.random() * 100,
-                width: 120 + Math.random() * 60,
-                height: 18,
-                moving: Math.random() > 0.5,
-                moveDirection: 1,
-                moveSpeed: 2.5
-            });
-        }
-
-        function updateGame(deltaTime) {
-            if (!gameRunning || gamePaused) return;
-
-            player.velocityY += CONFIG.game.gravity;
-            player.y += player.velocityY;
-
-            const groundLevel = canvas.height - 100;
-            if (player.y + player.height > groundLevel) {
-                player.y = groundLevel - player.height;
-                player.velocityY = 0;
-                player.isJumping = false;
-                player.canDoubleJump = true;
-            }
-
-            obstacles.forEach((obstacle, index) => {
-                obstacle.x -= CONFIG.game.speed + (gameState.level * 0.6);
-                
-                if (checkCollision(player, obstacle)) {
-                    gameState.lives--;
-                    updateGameUI();
-                    createParticles(player.x + player.width/2, player.y + player.height/2, 18);
-                    obstacles.splice(index, 1);
-                    
-                    if (gameState.lives <= 0) {
-                        gameOver();
-                    }
-                }
-                
-                if (!obstacle.passed && obstacle.x + obstacle.width < player.x) {
-                    obstacle.passed = true;
-                    gameState.score += 10;
-                    updateGameUI();
-                }
-                
-                if (obstacle.x < -50) {
-                    obstacles.splice(index, 1);
-                }
-            });
-
-            collectibles.forEach((collectible, index) => {
-                collectible.x -= CONFIG.game.speed + (gameState.level * 0.6);
-                
-                if (!collectible.collected && checkCollision(player, collectible)) {
-                    collectible.collected = true;
-                    gameState.score += 25;
-                    createParticles(collectible.x, collectible.y, 12);
-                    collectibles.splice(index, 1);
-                    updateGameUI();
-                }
-                
-                if (collectible.x < -50) {
-                    collectibles.splice(index, 1);
-                }
-            });
-
-            platforms.forEach((platform, index) => {
-                if (platform.moving) {
-                    platform.x += platform.moveSpeed * platform.moveDirection;
-                    if (platform.x > canvas.width - 200 || platform.x < canvas.width - 450) {
-                        platform.moveDirection *= -1;
-                    }
-                } else {
-                    platform.x -= CONFIG.game.speed + (gameState.level * 0.6);
-                }
-                
-                if (player.velocityY > 0 &&
-                    player.x + player.width > platform.x &&
-                    player.x < platform.x + platform.width &&
-                    player.y + player.height > platform.y &&
-                    player.y + player.height < platform.y + platform.height + 12) {
-                    player.y = platform.y - player.height;
-                    player.velocityY = 0;
-                    player.isJumping = false;
-                    player.canDoubleJump = true;
-                }
-                
-                if (platform.x < -250) {
-                    platforms.splice(index, 1);
-                }
-            });
-
-            particles.forEach((particle, index) => {
-                particle.x += particle.velocityX;
-                particle.y += particle.velocityY;
-                particle.life -= 0.025;
-                particle.velocityY += 0.25;
-                
-                if (particle.life <= 0) {
-                    particles.splice(index, 1);
-                }
-            });
-
-            if (Math.random() < 0.022) {
-                spawnObstacle();
-            }
-            if (Math.random() < 0.018) {
-                spawnCollectible();
-            }
-            if (Math.random() < 0.012 && gameState.level > 1) {
-                spawnPlatform();
-            }
-
-            if (gameState.score > gameState.level * 120) {
-                gameState.level++;
-                updateGameUI();
-                showToast('¡Nivel ' + gameState.level + '!', 'success');
-            }
-        }
-
-        function checkCollision(a, b) {
-            return a.x < b.x + b.width &&
-                   a.x + a.width > b.x &&
-                   a.y < b.y + b.height &&
-                   a.y + a.height > b.y;
-        }
-
-        function renderGame() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            const skyGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            skyGradient.addColorStop(0, '#87CEEB');
-            skyGradient.addColorStop(1, '#98FB98');
-            ctx.fillStyle = skyGradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Clouds
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-            for (let i = 0; i < 5; i++) {
-                const cloudX = ((Date.now() / 60 + i * 220) % (canvas.width + 120)) - 60;
-                const cloudY = 55 + i * 35;
-                ctx.beginPath();
-                ctx.arc(cloudX, cloudY, 35, 0, Math.PI * 2);
-                ctx.arc(cloudX + 30, cloudY - 12, 40, 0, Math.PI * 2);
-                ctx.arc(cloudX + 60, cloudY, 35, 0, Math.PI * 2);
-                ctx.fill();
-            }
-
-            const groundGradient = ctx.createLinearGradient(0, canvas.height - 100, 0, canvas.height);
-            groundGradient.addColorStop(0, '#8B4513');
-            groundGradient.addColorStop(1, '#654321');
-            ctx.fillStyle = groundGradient;
-            ctx.fillRect(0, canvas.height - 100, canvas.width, 100);
-
-            ctx.fillStyle = '#228B22';
-            ctx.fillRect(0, canvas.height - 100, canvas.width, 18);
-
-            platforms.forEach(platform => {
-                const platformGradient = ctx.createLinearGradient(platform.x, platform.y, platform.x, platform.y + platform.height);
-                platformGradient.addColorStop(0, '#FFB6C1');
-                platformGradient.addColorStop(1, '#FF69B4');
-                ctx.fillStyle = platformGradient;
-                ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
-                ctx.strokeStyle = '#FFC0CB';
-                ctx.lineWidth = 3;
-                ctx.strokeRect(platform.x, platform.y, platform.width, platform.height);
-            });
-
-            collectibles.forEach(collectible => {
-                ctx.font = '35px Arial';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(collectible.type, collectible.x + collectible.width/2, collectible.y + collectible.height/2);
-            });
-
-            obstacles.forEach(obstacle => {
-                ctx.font = '45px Arial';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(obstacle.type, obstacle.x + obstacle.width/2, obstacle.y + obstacle.height/2);
-            });
-
-            ctx.save();
-            if (player.isDucking) {
-                ctx.scale(1, 0.6);
-                ctx.translate(0, player.height * 0.4);
-            }
-            ctx.font = '55px Arial';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(player.sprite, player.x + player.width/2, player.y + player.height/2);
-            ctx.restore();
-
-            particles.forEach(particle => {
-                ctx.globalAlpha = particle.life;
-                ctx.fillStyle = particle.color;
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                ctx.fill();
-            });
-            ctx.globalAlpha = 1;
-
-            if (gamePaused) {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = 'bold 52px Montserrat';
-                ctx.textAlign = 'center';
-                ctx.fillText('PAUSA', canvas.width/2, canvas.height/2);
-            }
-        }
-
-        function gameLoop(timestamp) {
-            const deltaTime = timestamp - lastTime;
-            lastTime = timestamp;
-
-            updateGame(deltaTime);
-            renderGame();
-
-            if (gameRunning && !gamePaused) {
-                animationId = requestAnimationFrame(gameLoop);
-            }
-        }
-
-        function startGame() {
-            if (gameRunning) return;
-            
-            gameRunning = true;
-            gamePaused = false;
-            gameState.score = 0;
-            gameState.lives = 3;
-            gameState.level = 1;
-            
-            obstacles = [];
-            collectibles = [];
-            platforms = [];
-            particles = [];
-            
-            player.y = canvas.height - 150;
-            player.velocityY = 0;
-            player.isJumping = false;
-            player.canDoubleJump = true;
-            
-            updateGameUI();
-            
-            document.getElementById('startBtn').disabled = true;
-            document.getElementById('pauseBtn').disabled = false;
-            document.getElementById('resetBtn').disabled = false;
-            document.getElementById('gameOverlay').classList.remove('active');
-            
-            lastTime = performance.now();
-            gameLoop(lastTime);
-            
-            showToast('¡Juego Iniciado!', 'success');
-        }
-
-        function togglePause() {
-            if (!gameRunning) return;
-            
-            gamePaused = !gamePaused;
-            document.getElementById('pauseBtn').innerHTML = gamePaused ? 
-                '<span>▶</span><span>Continuar</span>' : 
-                '<span>⏸</span><span>Pausar</span>';
-            
-            if (!gamePaused) {
-                lastTime = performance.now();
-                gameLoop(lastTime);
-            }
-        }
-
-        function resetGame() {
-            gameRunning = false;
-            gamePaused = false;
-            cancelAnimationFrame(animationId);
-            
-            obstacles = [];
-            collectibles = [];
-            platforms = [];
-            particles = [];
-            
-            player.y = canvas.height - 150;
-            player.velocityY = 0;
-            player.isJumping = false;
-            
-            document.getElementById('startBtn').disabled = false;
-            document.getElementById('pauseBtn').disabled = true;
-            document.getElementById('resetBtn').disabled = true;
-            document.getElementById('pauseBtn').innerHTML = '<span>⏸</span><span>Pausar</span>';
-            document.getElementById('gameOverlay').classList.remove('active');
-            
-            gameState.score = 0;
-            gameState.lives = 3;
-            gameState.level = 1;
-            updateGameUI();
-            
-            renderGame();
-        }
-
-        function gameOver() {
-            gameRunning = false;
-            cancelAnimationFrame(animationId);
-            
-            if (gameState.score > gameState.highScore) {
-                gameState.highScore = gameState.score;
-                localStorage.setItem('hkp_highscore', gameState.highScore);
-                showToast('¡Nuevo Récord!', 'success');
-            }
-            
-            document.getElementById('overlayTitle').textContent = '¡Juego Terminado!';
-            document.getElementById('overlayScore').textContent = 
-                'Puntuación: ' + gameState.score + ' | Nivel: ' + gameState.level;
-            document.getElementById('gameOverlay').classList.add('active');
-            
-            document.getElementById('startBtn').disabled = false;
-            document.getElementById('pauseBtn').disabled = true;
-        }
-
-        function updateGameUI() {
-            document.getElementById('score').textContent = gameState.score;
-            document.getElementById('lives').textContent = '❤️'.repeat(gameState.lives);
-            document.getElementById('level').textContent = gameState.level;
-        }
-
-        // ============================================
         // SMOOTH SCROLL
         // ============================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2760,4 +2256,4 @@
     </script>
 </body>
 </html>
-
+```
